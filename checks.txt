@@ -1,0 +1,31 @@
+=== 1. Volume triangulation via implied take rate ===
+  KOL $452M              implied take rate = 0.37%
+  CoinGecko $146.19M     implied take rate = 1.15%
+  Leaderboard $37.59M    implied take rate = 4.47%
+  Single pair $3.09M     implied take rate = 54.34%
+  volume / market cap at $146.19M = 7.31%
+  volume / market cap at $452M     = 22.61%
+  buyback annualised              = $306.5M
+  buyback yield on market cap     = 15.33%
+  0.02% of max supply burned/day  = 0.2B PUMP = $0.87M at spot
+  annualised burn rate            = 7.30% of max supply
+
+=== 2. TVL vs revenue as denominator ===
+  annualised revenue   = $612.9M
+  market cap / revenue = 3.26x
+  FDV / revenue        = 5.84x
+  market cap / TVL     = 5.98x
+  FDV / TVL            = 10.72x
+
+=== 3. Market-share claim ===
+  '89% of SOL trading' (KOL claim)      = 89.00%
+  PUMP share of leaderboard sample      = 28.16%
+  gap between the two claims            = 60.8 pp
+
+=== 4. Five-minute sell skew ===
+  5m transactions            = 84
+  5m buy ratio               = 27.38%
+  z-score vs balanced 50/50  = -4.15 sigma
+  24h buy ratio              = 53.60%
+  float / max supply         = 46.07%
+  float / total supply       = 55.80%
