@@ -3,6 +3,7 @@
 **Asset:** PUMP (Pump.fun), Solana — `pumpCmXqMfrsAkQ5r49WcJnRayYRqmXz6ae8H7H9Dfn`
 **Report generated in RaptorX:** 2026-10-27 21:45 UTC (RexScreener → Solana → Pump → *Full Report*)
 **Follow-up questions asked to REX AI:** 2026-10-27 21:46 UTC, 4 questions, same thread (`Rex Pilot → PUMP (Pump)`)
+**REX AI answers received:** 2026-10-28 02:41–02:56 UTC, all four, same thread — transcript in `answers/`, screenshots `evidence/08`–`11`
 **Second asset for range:** JUP (Jupiter) — report 21:22 UTC + 1 question (cached report, *not* used for the main argument)
 
 The four questions below are not generic prompts. Each one takes two numbers that the
@@ -106,6 +107,11 @@ RaptorX's own Coin-O-Metry panel makes the conflict visible: buy ratio **27%** o
 | `evidence/05-questions-3-4.png` | Q3 and Q4 as posted in the thread |
 | `evidence/06-thread-fullpage.png` | full RaptorX window: token page + Rex Pilot thread with the question |
 | `evidence/07-jup-thread.png` | the earlier JUP report thread with a supply-denominator question |
+| `evidence/08-answer-1-volume.png` | Q1 answered: $146.19M, 7.31% turnover, 15.32% buyback yield |
+| `evidence/09-answer-2-denominator.png` | Q2 answered: TVL rejected, 3.3x P/S / 5.8x FDV-sales |
+| `evidence/10-answer-3-market-share.png` | Q3 answered: 89% launchpad vs 28% leaderboard, arbiters ranked |
+| `evidence/11-answer-4-flow.png` | Q4 answered: CEX deposits → LP removals → burn inflows |
+| `answers/q1-volume.md` … `answers/q4-flow.md` | full verbatim REX AI answer text for all four questions |
 | `evidence/api-chat-response.json` | raw `POST /api/chat` response — see platform note below |
 | `report/pump-report.md` | full text of the generated PUMP report (the artefact under questioning) |
 | `report/jup-report.md` | full text of the earlier JUP report |
@@ -113,22 +119,28 @@ RaptorX's own Coin-O-Metry panel makes the conflict visible: buy ratio **27%** o
 
 ---
 
-## Platform note (disclosed, not used as an excuse)
+## What REX AI answered (28 Oct, 02:41–02:56 UTC)
 
-While this entry was being prepared, REX AI replies were unavailable for every prompt —
-the chat endpoint returns HTTP 500 with an upstream provider error:
+The questions were first posted at 21:46 UTC and the chat endpoint was hard-down at that
+moment (HTTP 500, upstream key limit — raw response kept in `evidence/api-chat-response.json`).
+The thread held the questions, and once the key recovered all four were answered in the same
+thread. Full text in [`answers/`](answers), captured screenshots `evidence/08`–`11`.
 
-```
-POST https://www.raptorx.trade/api/chat  ->  500
-{"error":"Failed to process AI chat","details":"API error occurred: Status 403 Body:
- {\"error\":{\"message\":\"Key limit exceeded (total limit). ... $20.00 of $20.00 used;
- does not reset.\" ...}}"}
-```
+| # | what the report claimed | what REX AI now says | effect on the entry's arithmetic |
+|---|---|---|---|
+| Q1 | four 24h volumes, 146x apart | stands behind **$146.19M**; $452M is *"total activity on the Pump.fun platform across all memecoins"* | turnover **7.31%**, not 22.6%; buyback **$306.45M/yr = 15.32%** on $2.0B cap, **8.56%** on $3.58B FDV |
+| Q2 | prices the token at 5.98x mcap/TVL | rejects TVL: *"liquidity provider capital… PUMP holders receive zero claim"*; underwrites revenue instead | **3.3x** circulating P/S, **5.8x** FDV/sales; decay drivers: 1.25%→0.30% fee tiers, cyclicality, 50% reinvestment (**6.6x** cap / **11.7x** FDV on burn cash flow) |
+| Q3 | "89% of SOL trading" | 89% = launchpad-sector share (80–92%+ of launches/fees); 28% = $PUMP's share of the top-traded leaderboard | arbiters ranked: fee-account inflows → aggregate DEX volume (Jupiter routing) → unique-trader counts |
+| Q4 | 23-buy/61-sell print is routine profit-taking | cannot be classified from counts alone; lead-lag is **CEX deposits → PumpSwap LP removals → burn-wallet inflows** | burn inflows are *"an entirely mechanical downstream output"* — a lagging metric, not an early warning |
 
-The same failure reproduced on the Claw AI 5.0 tab (question accepted, spinner ends, no
-answer), so the questions are stored in the thread but no model answer exists to quote.
-The full raw response is kept in `evidence/api-chat-response.json`. Report generation itself
-worked normally throughout (PUMP report generated 21:45 UTC, JUP 21:22 UTC, SOL 21:35 UTC).
+Two honest limits in the answers themselves, left in rather than smoothed over:
+
+- On Q1 REX never addresses the second half of my question — it treats the whole $839.6K/day
+  as open-market buybacks and does not net out treasury-funded burns, so 15.32% stays an
+  upper bound rather than a settled figure.
+- On Q2 it answers the multiple but gives decay as three named drivers plus a Gordon-growth
+  identity, not as a single calibrated decay rate; the −4.7%/−9.7% range in `checks.py` is the
+  boundary implied by the 6.53x price/buyback multiple, which REX's answer is consistent with.
 
 The questions are written so that they stand on their own as analysis: each states the
 conflict, the arithmetic that resolves it, and the observable that would settle it.
